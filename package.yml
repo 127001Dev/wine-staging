@@ -2,8 +2,8 @@ name       : wine
 version    : 2.18
 release    : 24
 source     :
-    - http://dl.winehq.org/wine/source/2.x/wine-2.19.tar.xz : 9f0931129878157d717cb39f16cd33bf49f40aac77331c93d0ad30f2ccac4f50
-    - https://github.com/wine-compholio/wine-staging/archive/v2.19.tar.gz : 69c75d3ca17b1c3617cd0934a9e9ad6fca37c6679900d2cb63f6981aa1026cc8
+    - http://dl.winehq.org/wine/source/2.x/wine-2.18.tar.xz : 9f0931129878157d717cb39f16cd33bf49f40aac77331c93d0ad30f2ccac4f50
+    - https://github.com/wine-compholio/wine-staging/archive/v2.18.tar.gz : 69c75d3ca17b1c3617cd0934a9e9ad6fca37c6679900d2cb63f6981aa1026cc8
 
 license    : LGPL-2.1
 component  : virt
@@ -71,9 +71,10 @@ rundeps    :
         - libtxc_dxtn-32bit
         - ncurses-32bit
 setup      : |
-    # D3D9 support
-    %patch -p1 < $pkgfiles/d3d9-helper.patch
-    %patch -p1 < $pkgfiles/wine-d3d9.patch
+    # Set up wine staging
+    mkdir staging
+    tar xf ${sources}/v${version}.tar.gz --strip-components=1 -C staging
+    sh ./staging/patches/patchinstall.sh --all DESTDIR=`pwd`
 
     autoreconf -vfi
 
