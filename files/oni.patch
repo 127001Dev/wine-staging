@@ -1,0 +1,20 @@
+diff --git a/dlls/wined3d/device.c b/dlls/wined3d/device.c
+index a7ee5bc..34d893e 100644
+--- a/dlls/wined3d/device.c
++++ b/dlls/wined3d/device.c
+@@ -3948,7 +3948,6 @@ void CDECL wined3d_device_copy_resource(struct wined3d_device *device,
+         WARN("Resource formats (%s / %s) don't match.\n",
+                 debug_d3dformat(dst_resource->format->id),
+                 debug_d3dformat(src_resource->format->id));
+-        return;
+     }
+ 
+     if (dst_resource->type == WINED3D_RTYPE_BUFFER)
+@@ -4038,7 +4037,6 @@ HRESULT CDECL wined3d_device_copy_sub_resource_region(struct wined3d_device *dev
+         WARN("Resource formats (%s / %s) don't match.\n",
+                 debug_d3dformat(dst_resource->format->id),
+                 debug_d3dformat(src_resource->format->id));
+-        return WINED3DERR_INVALIDCALL;
+     }
+ 
+     if (dst_resource->type == WINED3D_RTYPE_BUFFER)
