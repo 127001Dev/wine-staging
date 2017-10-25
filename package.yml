@@ -69,7 +69,7 @@ rundeps    :
         - libpng-32bit
         - libtiff-32bit
         - libtxc_dxtn-32bit
- - ncurses-32bit
+        - ncurses-32bit
 setup      : |
     # Set up wine staging
     mkdir staging
