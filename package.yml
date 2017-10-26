@@ -4,15 +4,14 @@ release    : 25
 source     :
     - http://dl.winehq.org/wine/source/2.x/wine-2.19.tar.xz : 487131e69875ae9c2d042798f954160146e603e449c3c97981f29b42f4a66095
     - https://github.com/wine-compholio/wine-staging/archive/v2.19.tar.gz : 2fdb083a484708362433000f92b54a5d648df190b2ab084647c45f5624063bd2
-
 license    : LGPL-2.1
 component  : virt
 summary    : Wine compatibility layer for Windows emulation.
 description: |
     Wine (originally an acronym for "Wine Is Not an Emulator") is a compatibility layer capable of running Windows applications on several POSIX-compliant operating systems, such as Linux, Mac OSX, & BSD. Instead of simulating internal Windows logic like a virtual machine or emulator, Wine translates Windows API calls into POSIX calls on-the-fly, eliminating the performance and memory penalties of other methods and allowing you to cleanly integrate Windows applications into your desktop.
 builddeps  :
-    - pkgconfig(dri2proto)
     - pkgconfig(xproto)
+    - pkgconfig(dri2proto)
     - pkgconfig32(alsa)
     - pkgconfig32(dbus-1)
     - pkgconfig32(d3d)
@@ -29,18 +28,18 @@ builddeps  :
     - pkgconfig32(libgphoto2)
     - pkgconfig32(libmpg123)
     - pkgconfig32(libpng)
-    - pkgconfig32(libpulse)
     - pkgconfig32(libtiff-4)
-    - pkgconfig32(libv4l1)
+    - pkgconfig32(libpulse)
     - pkgconfig32(libxml-2.0)
+    - pkgconfig32(libv4l1)
     - pkgconfig32(libxslt)
     - pkgconfig32(ocl-icd)
     - pkgconfig32(openal)
     - pkgconfig32(OpenCL)
     - pkgconfig32(x11)
-    - pkgconfig32(xcb-dri3)
-    - pkgconfig32(xcomposite)
     - pkgconfig32(xcursor)
+    - pkgconfig32(xcomposite)
+    - pkgconfig32(xcb-dri3)
     - pkgconfig32(xext)
     - pkgconfig32(xi)
     - pkgconfig32(xinerama)
@@ -51,8 +50,9 @@ builddeps  :
     - cups-32bit-devel
     - glibc-32bit-devel
     - libgcc-32bit
-    - libjpeg-turbo-32bit-devel
+    - libpcap-devel
     - libpcap-32bit-devel
+    - libjpeg-turbo-32bit-devel
     - libpth-32bit-devel
     - ncurses-32bit-devel
     - openldap-32bit-devel
@@ -64,20 +64,18 @@ rundeps    :
     - 32bit :
         - freetype2-32bit
         - harfbuzz-32bit
-        - libgnutls-32bit
-        - libp11-kit-32bit
+        - libtxc_dxtn-32bit
         - libpng-32bit
         - libtiff-32bit
-        - libtxc_dxtn-32bit
+        - libgnutls-32bit
         - ncurses-32bit
 setup      : |
     # Set up wine staging
     mkdir staging
     tar xf ${sources}/v${version}.tar.gz --strip-components=1 -C staging
     sh ./staging/patches/patchinstall.sh --all DESTDIR=`pwd`
-
     autoreconf -vfi
-
+    
     # Get 64-bit done first.
     mkdir wine64 && pushd wine64
     ../configure %CONFOPTS% --enable-win64 \
@@ -106,4 +104,3 @@ install    : |
     install -d 755 $installdir/usr/share/fontconfig/conf.avail
     install -m 644 $pkgfiles/30-win32-aliases.conf $installdir/usr/share/fontconfig/conf.avail
     ln -s /usr/share/fontconfig/conf.avail/30-win32-aliases.conf $installdir/usr/share/fonts/conf.d/30-win32-aliases.conf
-
