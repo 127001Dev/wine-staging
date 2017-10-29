@@ -1,3 +1,14 @@
+From 42aa9a0c305b3eb60fce20ea1c6c8e4b8e6d7be2 Mon Sep 17 00:00:00 2001
+From: Kimmo Myllyvirta <kimmo.myllyvirta@gmail.com>
+Date: Tue, 10 Oct 2017 16:40:41 +0300
+Subject: [PATCH 1/2] bcrypt: Initial implementation for RSA key import and
+ signature verification.
+
+---
+ dlls/bcrypt/bcrypt_main.c | 119 ++++++++++++++++++++++++++++++++++++++++++----
+ include/bcrypt.h          |  17 +++++++
+ 2 files changed, 127 insertions(+), 9 deletions(-)
+
 diff --git a/dlls/bcrypt/bcrypt_main.c b/dlls/bcrypt/bcrypt_main.c
 index 881f6f7..e4161bd 100644
 --- a/dlls/bcrypt/bcrypt_main.c

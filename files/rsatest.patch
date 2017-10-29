@@ -1,3 +1,17 @@
+From 5f67f8d434f82b35ad433e561740da952f85540c Mon Sep 17 00:00:00 2001
+From: Kimmo Myllyvirta <kimmo.myllyvirta@gmail.com>
+Date: Tue, 10 Oct 2017 16:41:09 +0300
+Subject: [PATCH 2/2] bcrypt/tests: Add simple test for RSA.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Based on patch from Bernhard Übelacker.
+
+---
+ dlls/bcrypt/tests/bcrypt.c | 95 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+
 diff --git a/dlls/bcrypt/tests/bcrypt.c b/dlls/bcrypt/tests/bcrypt.c
 index 73bd4d6..56e3440 100644
 --- a/dlls/bcrypt/tests/bcrypt.c

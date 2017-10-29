@@ -1,3 +1,12 @@
+From e71a382606057ca77a94b9afca56867cd0ffe3d4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michael=20M=C3=BCller?= <michael@fds-team.de>
+Date: Sat, 7 Oct 2017 00:39:35 +0200
+Subject: d3d11/tests: Add basic test for depth bias clamping.
+
+---
+ dlls/d3d11/tests/d3d11.c | 41 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
 diff --git a/dlls/d3d11/tests/d3d11.c b/dlls/d3d11/tests/d3d11.c
 index 8906b9efa7..ef6eafd11f 100644
 --- a/dlls/d3d11/tests/d3d11.c

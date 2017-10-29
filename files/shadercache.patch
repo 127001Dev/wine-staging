@@ -1,3 +1,12 @@
+From ca399e63b2ae4e355d565d9083ee124dff8c7561 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michael=20M=C3=BCller?= <michael@fds-team.de>
+Date: Fri, 6 Oct 2017 04:48:26 +0200
+Subject: wined3d: Guess shader compile arguments when they are not cached.
+
+---
+ dlls/wined3d/glsl_shader.c | 29 ++++++++++++++++++++---------
+ 1 file changed, 20 insertions(+), 9 deletions(-)
+
 diff --git a/dlls/wined3d/glsl_shader.c b/dlls/wined3d/glsl_shader.c
 index 016902a1e8..c7d1bae077 100644
 --- a/dlls/wined3d/glsl_shader.c

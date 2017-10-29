@@ -1,3 +1,20 @@
+From e3c3f99986547a53a80594a257c55c0b77ad2167 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michael=20M=C3=BCller?= <michael@fds-team.de>
+Date: Sat, 7 Oct 2017 00:52:34 +0200
+Subject: wined3d: Add support for depth bias clamping.
+
+---
+ dlls/d3d11/device.c       | 12 +++++++-----
+ dlls/d3d11/tests/d3d11.c  |  2 +-
+ dlls/wined3d/cs.c         |  1 +
+ dlls/wined3d/directx.c    |  3 +++
+ dlls/wined3d/state.c      | 19 ++++++++++++++++---
+ dlls/wined3d/stateblock.c |  2 ++
+ dlls/wined3d/utils.c      |  1 +
+ dlls/wined3d/wined3d_gl.h |  1 +
+ include/wine/wined3d.h    |  3 ++-
+ 9 files changed, 34 insertions(+), 10 deletions(-)
+
 diff --git a/dlls/d3d11/device.c b/dlls/d3d11/device.c
 index d111b6775e..d85e913527 100644
 --- a/dlls/d3d11/device.c
