@@ -1,0 +1,60 @@
+diff --git a/dlls/wined3d/glsl_shader.c b/dlls/wined3d/glsl_shader.c
+index 016902a1e8..c7d1bae077 100644
+--- a/dlls/wined3d/glsl_shader.c
++++ b/dlls/wined3d/glsl_shader.c
+@@ -10198,10 +10198,13 @@ static void shader_glsl_precompile(void *shader_priv, struct wined3d_shader *sha
+     {
+         struct gs_compile_args args;
+ 
+-        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
+-        if (!config_load) return;
+-
+         context = context_acquire(device, NULL, 0);
++        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
++        if (!config_load)
++        {
++            find_gs_compile_args(state, shader, &args);
++            args.output_count = shader->limits->packed_output;
++        }
+         find_glsl_geometry_shader(context, priv, shader, &args, config_load);
+         context_release(context);
+     }
+@@ -10209,10 +10212,15 @@ static void shader_glsl_precompile(void *shader_priv, struct wined3d_shader *sha
+     {
+         struct vs_compile_args args;
+ 
+-        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
+-        if (!config_load) return;
+-
+         context = context_acquire(device, NULL, 0);
++        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
++        if (!config_load)
++        {
++            find_vs_compile_args(state, shader, context->stream_info.swizzle_map, &args, context->d3d_info);
++            if (shader->reg_maps.shader_version.major >= 4)
++                args.next_shader_input_count = shader->limits->packed_output;
++            args.next_shader_type = WINED3D_SHADER_TYPE_PIXEL;
++        }
+         find_glsl_vshader(context, priv, shader, &args, config_load);
+         context_release(context);
+     }
+@@ -10221,10 +10229,13 @@ static void shader_glsl_precompile(void *shader_priv, struct wined3d_shader *sha
+         const struct ps_np2fixup_info *np2fixup_info = NULL;
+         struct ps_compile_args args;
+ 
+-        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
+-        if (!config_load) return;
+-
+         context = context_acquire(device, NULL, 0);
++        config_load = shader_glsl_load_shader_config(priv, shader, &args, sizeof(args));
++        if (!config_load)
++        {
++            find_ps_compile_args(state, shader, FALSE, &args, context);
++            args.vp_mode = vertexshader;
++        }
+         find_glsl_pshader(context, &priv->shader_buffer, &priv->string_buffers, shader, &args, &np2fixup_info, config_load);
+         context_release(context);
+     }
+-- 
+2.14.1
+
