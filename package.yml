@@ -1,9 +1,9 @@
 name       : wine
-version    : '2.19'
-release    : 25
+version    : '2.20'
+release    : 26
 source     :
-    - https://dl.winehq.org/wine/source/2.x/wine-2.19.tar.xz : 487131e69875ae9c2d042798f954160146e603e449c3c97981f29b42f4a66095
-    - https://github.com/wine-compholio/wine-staging/archive/v2.19.tar.gz : 2fdb083a484708362433000f92b54a5d648df190b2ab084647c45f5624063bd2
+    - https://dl.winehq.org/wine/source/2.x/wine-2.20.tar.xz : b444826c69048932fd51ac00b791d18528a4d4abd4c397e5bd51ac60eda455a5
+    - https://github.com/wine-compholio/wine-staging/archive/v2.20.tar.gz : 12f0272df79c28f64f9e012fa5dc08ad421188089c42c91d218bbf249502c4e3
 license    : LGPL-2.1
 component  : virt
 summary    : Wine compatibility layer for Windows emulation.
